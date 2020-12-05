@@ -83,15 +83,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
 function menuItemDisplay(items) {
   const menuItems = items
-    .map(function (menuItem) {
+    .map(function ({ img, title, price, desc }) {
       return `<article class="menu-item">
-  <img src=${menuItem.img} alt="${menuItem.title}" class="photo" />
+  <img src=${img} alt="${title}" class="photo" />
   <div class="item-info">
     <header>
-      <h4>${menuItem.title}</h4>
-      <h4 class="price">$${menuItem.price}</h4>
+      <h4>${title}</h4>
+      <h4 class="price">$${price}</h4>
     </header>
-    <p class="item-text">${menuItem.desc}</p>
+    <p class="item-text">${desc}</p>
   </div>
 </article>`;
     })
@@ -103,7 +103,7 @@ function displayFilterBtns() {
   const categories = menu.reduce(
     function (values, item) {
       if (!values.includes(item.category)) {
-        values.push(item.category);
+        values = [...values, item.category];
       }
       return values;
     },
